@@ -1,0 +1,102 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "hero-farm",
+      "description": "Lush green Punjab farm with modern machinery",
+      "imageUrl": "/images/sliders/hero-farm.jpg",
+      "imageHint": "agricultural farm"
+    },
+    {
+      "id": "hero-tractor",
+      "description": "Powerful SB AGROTECH tractor in a golden wheat field",
+      "imageUrl": "/images/sliders/main_header.jpg",
+      "imageHint": "farming tractor"
+    },
+
+    {
+      "id": "rotavator-regular",
+      "description": "SB AGROTECH Regular Model Rotavator",
+      "imageUrl": "/images/products/IMG_3125.PNG",
+      "imageHint": "rotavator tractor"
+    },
+    {
+      "id": "rotavator-regular-2",
+      "description": "SB AGROTECH Regular Model Rotavator Detail",
+      "imageUrl": "/images/products/IMG_3126.PNG",
+      "imageHint": "machinery parts"
+    },
+    {
+      "id": "rotavator-plus",
+      "description": "SB AGROTECH Regular Plus Rotavator",
+      "imageUrl": "/images/products/IMG_3127.PNG",
+      "imageHint": "farm machinery"
+    },
+    {
+      "id": "rotavator-plus-2",
+      "description": "SB AGROTECH Regular Plus Detail",
+      "imageUrl": "/images/products/IMG_3128.PNG",
+      "imageHint": "tractor equipment"
+    },
+    {
+      "id": "disk-harrow",
+      "description": "Rotary Disk Harrow",
+      "imageUrl": "/images/products/IMG_3129.PNG",
+      "imageHint": "plowing equipment"
+    },
+    {
+      "id": "hd-rotavator",
+      "description": "HD Rotavator Heavy Duty",
+      "imageUrl": "/images/products/IMG_3130.PNG",
+      "imageHint": "heavy machinery"
+    },
+    {
+      "id": "double-frame",
+      "description": "Double Tubular Frame Rotavator",
+      "imageUrl": "/images/products/WhatsApp Image 2026-06-21 at 10..01 PM.jpeg",
+      "imageHint": "industrial tractor"
+    },
+    {
+      "id": "zero-drill",
+      "description": "Zero Drill Machine",
+      "imageUrl": "/images/products/IMG_3125.PNG",
+      "imageHint": "seeding machine"
+    },
+    {
+      "id": "laser-leveler",
+      "description": "Laser Land Leveler",
+      "imageUrl": "/images/products/IMG_3126.PNG",
+      "imageHint": "laser agriculture"
+    },
+    {
+      "id": "mud-loader",
+      "description": "Mud Loader Machine",
+      "imageUrl": "/images/products/IMG_3127.PNG",
+      "imageHint": "loader tractor"
+    },
+    {
+      "id": "farmer-1",
+      "description": "Happy Punjab farmer with harvest",
+      "imageUrl": "https://picsum.photos/seed/farmer1/200/200",
+      "imageHint": "farmer smiling"
+    },
+    {
+      "id": "farmer-2",
+      "description": "Satisfied tractor owner in field",
+      "imageUrl": "https://picsum.photos/seed/farmer2/200/200",
+      "imageHint": "indian farmer"
+    },
+    {
+      "id": "farmer-3",
+      "description": "Progressive farmer using technology",
+      "imageUrl": "https://picsum.photos/seed/farmer3/200/200",
+      "imageHint": "modern farmer"
+    },
+    {
+      "id": "testimonial-hero-farmer",
+      "description": "A successful Punjab farmer in his field",
+      "imageUrl": "https://picsum.photos/seed/testimonial-farmer/800/1000",
+      "imageHint": "indian farmer"
+    }
+  ]
+}

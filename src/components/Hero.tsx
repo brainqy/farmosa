@@ -9,8 +9,11 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { useLocale } from "@/hooks/use-locale";
+import { translate } from "@/lib/i18n";
 
 export function Hero() {
+  const { locale } = useLocale();
   const heroImages = PlaceHolderImages.filter((img) =>
     ["hero-farm", "hero-tractor"].includes(img.id)
   );
@@ -35,7 +38,7 @@ export function Hero() {
                 {hero.imageUrl && (
                   <Image
                     src={hero.imageUrl}
-                    alt={hero.description || "Punjab farming"}
+                    alt={hero.description || translate(locale, "hero.imageAlt")}
                     fill
                     sizes="100vw"
                     unoptimized

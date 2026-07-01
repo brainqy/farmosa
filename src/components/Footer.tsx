@@ -3,8 +3,11 @@
 import React from "react";
 import Link from "next/link";
 import { Tractor, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { useLocale } from "@/hooks/use-locale";
+import { translate } from "@/lib/i18n";
 
 export function Footer() {
+  const { locale } = useLocale();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -21,7 +24,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-white/60 text-base leading-relaxed">
-              Premium agricultural machinery manufacturer based in Ludhiana, Punjab. We empower farmers with precision tools built for multi-generational durability.
+              {translate(locale, "footer.description")}
             </p>
             <div className="flex gap-4">
               {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
@@ -33,17 +36,17 @@ export function Footer() {
           </div>
 
           <div className="sm:pl-8 lg:pl-12">
-            <h5 className="font-bold text-secondary uppercase tracking-widest text-xs mb-8">Quick Links</h5>
+            <h5 className="font-bold text-secondary uppercase tracking-widest text-xs mb-8">{translate(locale, "footer.quickLinks")}</h5>
             <ul className="space-y-5 text-base text-white/70">
-              <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
-              <li><Link href="/about" className="hover:text-white transition-colors">About Company</Link></li>
-              <li><Link href="/products" className="hover:text-white transition-colors">Product Catalog</Link></li>
-              <li><Link href="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
+              <li><Link href="/" className="hover:text-white transition-colors">{translate(locale, "footer.home")}</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors">{translate(locale, "footer.about")}</Link></li>
+              <li><Link href="/products" className="hover:text-white transition-colors">{translate(locale, "footer.products")}</Link></li>
+              <li><Link href="/contact" className="hover:text-white transition-colors">{translate(locale, "footer.contact")}</Link></li>
             </ul>
           </div>
 
           <div className="lg:pl-8">
-            <h5 className="font-bold text-secondary uppercase tracking-widest text-xs mb-8">Core Range</h5>
+            <h5 className="font-bold text-secondary uppercase tracking-widest text-xs mb-8">{translate(locale, "footer.coreRange")}</h5>
             <ul className="space-y-5 text-base text-white/70">
               <li>Regular Rotavator</li>
               <li>HD Rotavator</li>
@@ -54,20 +57,20 @@ export function Footer() {
           </div>
 
           <div>
-            <h5 className="font-bold text-secondary uppercase tracking-widest text-xs mb-8">Business Support</h5>
+            <h5 className="font-bold text-secondary uppercase tracking-widest text-xs mb-8">{translate(locale, "footer.businessSupport")}</h5>
             <ul className="space-y-5 text-base text-white/70">
-              <li><Link href="/contact" className="hover:text-white transition-colors">Dealership Inquiry</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Spare Parts Hub</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Service Centers</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Export Docs</Link></li>
+              <li><Link href="/contact" className="hover:text-white transition-colors">{translate(locale, "footer.dealershipInquiry")}</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">{translate(locale, "footer.spareParts")}</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">{translate(locale, "footer.serviceCenters")}</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">{translate(locale, "footer.privacyPolicy")}</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">{translate(locale, "footer.exportDocs")}</Link></li>
             </ul>
           </div>
         </div>
 
         <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-white/40 text-sm font-medium">
-          <p className="text-center md:text-left">© {currentYear} SB AGROTECH. All rights reserved.</p>
-          <p className="text-center md:text-right">A Division of SB AGROTECH | Ludhiana, Punjab, India</p>
+          <p className="text-center md:text-left">{translate(locale, "footer.copyright").replace('{year}', String(currentYear))}</p>
+          <p className="text-center md:text-right">{translate(locale, "footer.location")}</p>
         </div>
       </div>
     </footer>

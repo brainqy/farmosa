@@ -72,14 +72,14 @@ export function Navigation() {
             onClick={() => setLocale(getAltLocale(locale))}
             className="text-sm font-bold border border-white/30 text-foreground bg-white/10 px-4 py-2 rounded-full hover:bg-white/90 hover:text-primary transition-all"
           >
-            {locale === 'en' ? 'हिंदी' : 'English'}
+            {locale === 'en' ? translate(locale, 'nav.toggleToHindi') : translate(locale, 'nav.toggleToEnglish')}
           </button>
           <Link
             href="https://wa.me/919001900613"
             className="bg-primary text-white px-6 py-2.5 rounded-full text-sm font-black flex items-center gap-2 hover:bg-secondary transition-all hover:scale-105 active:scale-95 shadow-lg shadow-primary/20"
           >
             <Phone size={16} />
-            Enquire Now
+            {translate(locale, 'nav.enquire')}
           </Link>
         </nav>
 
@@ -90,7 +90,7 @@ export function Navigation() {
             isScrolled || !isHomePage ? "text-primary bg-primary/5" : "text-white bg-white/10"
           )}
           onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle Menu"
+          aria-label={translate(locale, 'nav.menuToggle')}
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -127,7 +127,7 @@ export function Navigation() {
               isOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
             )}
           >
-            {locale === 'en' ? 'हिंदी' : 'English'}
+            {locale === 'en' ? translate(locale, 'nav.toggleToHindi') : translate(locale, 'nav.toggleToEnglish')}
           </button>
           <Link
             href="https://wa.me/919001900613"
@@ -137,7 +137,7 @@ export function Navigation() {
             )}
           >
             <Phone size={24} />
-            WhatsApp Us
+            {translate(locale, 'nav.whatsappUs')}
           </Link>
         </div>
       </div>

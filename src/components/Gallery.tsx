@@ -10,26 +10,29 @@ import {
   CarouselNext,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { useLocale } from "@/hooks/use-locale";
+import { translate } from "@/lib/i18n";
 
 const GALLERY_IMAGES = [
   {
     src: "/images/testomonials/testomonial1.jpeg",
-    alt: "Punjab farmer testimonial photo 1",
-    caption: "Harvest season success.",
+    altKey: "gallery.imageAlt1",
+    captionKey: "gallery.imageCaption1",
   },
   {
     src: "/images/testomonials/testomonial2.jpeg",
-    alt: "Punjab farmer testimonial photo 2",
-    caption: "Trusted equipment in action.",
+    altKey: "gallery.imageAlt2",
+    captionKey: "gallery.imageCaption2",
   },
   {
     src: "/images/testomonials/testomonial3.jpeg",
-    alt: "Punjab farmer testimonial photo 3",
-    caption: "Field-ready performance.",
+    altKey: "gallery.imageAlt3",
+    captionKey: "gallery.imageCaption3",
   },
 ];
 
 export function Gallery() {
+  const { locale } = useLocale();
   const plugin = useRef(
     Autoplay({ delay: 4500, stopOnInteraction: false })
   );
@@ -39,13 +42,13 @@ export function Gallery() {
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in-up">
           <span className="text-secondary font-bold tracking-widest uppercase text-sm mb-4 block">
-            Photo Gallery
+            {translate(locale, "gallery.badge")}
           </span>
           <h2 className="text-3xl md:text-5xl font-headline font-bold text-primary mb-4">
-            See Our Machines and Farmers in the Field
+            {translate(locale, "gallery.title")}
           </h2>
           <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-            A separate gallery showcasing real customer equipment, field setup, and trusted on-farm performance.
+            {translate(locale, "gallery.description")}
           </p>
         </div>
 
@@ -64,15 +67,15 @@ export function Gallery() {
                   <div className="relative w-full h-full overflow-hidden rounded-[2rem] shadow-2xl bg-black/5">
                     <Image
                       src={image.src}
-                      alt={image.alt}
+                      alt={translate(locale, image.altKey)}
                       fill
                       className="object-contain"
                     />
                     <div className="absolute inset-0 bg-black/10" />
                     <div className="absolute bottom-8 left-8 right-8 text-white">
-                      <p className="text-sm uppercase tracking-[0.3em] text-secondary mb-2">Real photo</p>
+                      <p className="text-sm uppercase tracking-[0.3em] text-secondary mb-2">{translate(locale, "gallery.imageLabel")}</p>
                       <h3 className="text-2xl md:text-3xl font-bold leading-tight">
-                        {image.caption}
+                        {translate(locale, image.captionKey)}
                       </h3>
                     </div>
                   </div>

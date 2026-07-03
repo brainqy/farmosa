@@ -7,6 +7,18 @@ import { LocaleProvider } from '@/hooks/use-locale';
 export const metadata: Metadata = {
   title: 'SB AGROTECH | Premium Farming Equipment Punjab',
   description: 'SB AGROTECH. Premium manufacturer of Rotavators, Zero Drill machines, and Laser Levelers in Punjab, India.',
+  openGraph: {
+    title: 'SB AGROTECH | Premium Farming Equipment Punjab',
+    description: 'SB AGROTECH. Premium manufacturer of Rotavators, Zero Drill machines, and Laser Levelers in Punjab, India.',
+    type: 'website',
+    images: ['/images/logo.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SB AGROTECH | Premium Farming Equipment Punjab',
+    description: 'SB AGROTECH. Premium manufacturer of Rotavators, Zero Drill machines, and Laser Levelers in Punjab, India.',
+    images: ['/images/logo.png'],
+  },
 };
 
 export default function RootLayout({

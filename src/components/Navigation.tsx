@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone, Tractor, ArrowRight } from "lucide-react";
+import { Menu, X, Phone, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLocale } from "@/hooks/use-locale";
 import { translate, getAltLocale } from "@/lib/i18n";
@@ -41,8 +42,8 @@ export function Navigation() {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="bg-primary p-2 rounded-xl text-white transition-transform group-hover:rotate-12 group-hover:scale-110 shadow-lg">
-            <Tractor size={24} />
+          <div className="bg-white p-2 rounded-xl shadow-lg overflow-hidden transition-transform group-hover:rotate-12 group-hover:scale-110 border border-slate-200">
+            <Image src="/images/logo.png" alt="SB AGROTECH logo" width={42} height={42} className="object-contain" />
           </div>
           <span className={cn(
             "font-headline font-bold text-xl md:text-2xl tracking-tight transition-all",

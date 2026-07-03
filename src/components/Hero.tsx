@@ -23,7 +23,7 @@ export function Hero() {
   );
 
   return (
-    <section id="home" className="relative w-full mt-[70px] h-[55vh] sm:h-[60vh] md:h-[68vh] lg:h-[75vh]">
+    <section id="home" className="relative w-full mt-[70px] h-[40vh] sm:h-[55vh] md:h-[68vh] lg:h-[75vh]">
       <div className="w-full h-full">
         <Carousel
           plugins={[plugin.current]}
@@ -42,7 +42,7 @@ export function Hero() {
                     fill
                     sizes="100vw"
                     unoptimized
-                    className="object-cover"
+                    className="object-contain sm:object-cover object-center"
                     priority={index === 0}
                     data-ai-hint={hero.imageHint}
                   />

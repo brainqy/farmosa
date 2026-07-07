@@ -60,14 +60,6 @@ export function About() {
                 ))}
               </div>
 
-              <div className="bg-white p-5 rounded-2xl shadow-sm border border-border flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left transition-all hover:shadow-md hover:border-primary/20 cursor-default">
-                <div className="bg-primary/10 p-3 rounded-full text-primary shrink-0 animate-pulse">
-                  <CheckCircle2 size={28} />
-                </div>
-                <p className="text-primary font-semibold text-sm md:text-base">
-                  {translate(locale, "about.supportNote")}
-                </p>
-              </div>
             </div>
 
             <div className="animate-fade-in-up animate-delay-200 order-1 lg:order-2">

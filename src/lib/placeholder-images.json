@@ -2,7 +2,7 @@
   "placeholderImages": [
     {
       "id": "hero-farm",
-      "description": "Lush green Punjab farm with modern machinery",
+      "description": "Lush green Rajasthan farm with modern machinery",
       "imageUrl": "/images/sliders/hero-farm.jpg",
       "imageHint": "agricultural farm"
     },
@@ -15,7 +15,7 @@
     {
       "id": "rotavator-regular",
       "description": "SB AGROTECH Regular Model Rotavator",
-      "imageUrl": "/images/products/IMG_3125.PNG",
+      "imageUrl": "/images/products/regular.jpeg",
       "imageHint": "rotavator tractor"
     },
     {
@@ -27,7 +27,7 @@
     {
       "id": "rotavator-plus",
       "description": "SB AGROTECH Regular Plus Rotavator",
-      "imageUrl": "/images/products/IMG_3127.PNG",
+      "imageUrl": "/images/products/Regular_plus.jpeg",
       "imageHint": "farm machinery"
     },
     {
@@ -45,7 +45,7 @@
     {
       "id": "hd-rotavator",
       "description": "HD Rotavator Heavy Duty",
-      "imageUrl": "/images/products/IMG_3130.PNG",
+      "imageUrl": "/images/products/hd_model.jpeg",
       "imageHint": "heavy machinery"
     },
     {
@@ -74,7 +74,7 @@
     },
     {
       "id": "farmer-1",
-      "description": "Happy Punjab farmer with harvest",
+      "description": "Happy Rajasthan farmer with harvest",
       "imageUrl": "https://picsum.photos/seed/farmer1/200/200",
       "imageHint": "farmer smiling"
     },

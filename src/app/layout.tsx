@@ -5,18 +5,18 @@ import { Toaster } from '@/components/ui/toaster';
 import { LocaleProvider } from '@/hooks/use-locale';
 
 export const metadata: Metadata = {
-  title: 'SB AGROTECH | Premium Farming Equipment Rajasthan',
-  description: 'SB AGROTECH. Premium manufacturer of Rotavators, Zero Drill machines, and Laser Levelers in Punjab, India.',
+  title: 'SB AGROTECH | Farming Equipment from Nagaur, Rajasthan',
+  description: 'SB AGROTECH. Manufacturer of rotavators, zero drill machines, and laser levelers from Khajwana, Nagaur district, Rajasthan.',
   openGraph: {
-    title: 'SB AGROTECH | Premium Farming Equipment Rajasthan',
-    description: 'SB AGROTECH. Premium manufacturer of Rotavators, Zero Drill machines, and Laser Levelers in Punjab, India.',
+    title: 'SB AGROTECH | Farming Equipment from Nagaur, Rajasthan',
+    description: 'SB AGROTECH. Manufacturer of rotavators, zero drill machines, and laser levelers from Khajwana, Nagaur district, Rajasthan.',
     type: 'website',
     images: ['/images/logo.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SB AGROTECH | Premium Farming Equipment Rajasthan',
-    description: 'SB AGROTECH. Premium manufacturer of Rotavators, Zero Drill machines, and Laser Levelers in Punjab, India.',
+    title: 'SB AGROTECH | Farming Equipment from Nagaur, Rajasthan',
+    description: 'SB AGROTECH. Manufacturer of rotavators, zero drill machines, and laser levelers from Khajwana, Nagaur district, Rajasthan.',
     images: ['/images/logo.png'],
   },
 };

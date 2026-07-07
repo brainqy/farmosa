@@ -23,12 +23,34 @@ export function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Get form data
+    const form = e.currentTarget as HTMLFormElement;
+    const formData = new FormData(form);
+    const name = (form.elements.namedItem('name') as HTMLInputElement)?.value || '';
+    const phone = (form.elements.namedItem('phone') as HTMLInputElement)?.value || '';
+    const location = (form.elements.namedItem('location') as HTMLInputElement)?.value || '';
+    const equipment = (form.elements.namedItem('interest') as HTMLInputElement)?.value || '';
+    const message = (form.elements.namedItem('message') as HTMLTextAreaElement)?.value || '';
+    
+    // Create WhatsApp message
+    const whatsappMessage = `*Service Request from SB AGROTECH Website*\n\n` +
+      `*Name:* ${name}\n` +
+      `*Phone:* ${phone}\n` +
+      `*Location:* ${location}\n` +
+      `*Equipment Interest:* ${equipment}\n` +
+      `*Message:* ${message}`;
+    
+    // Send to WhatsApp
+    const phoneNumber = '919001900613';
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+    window.open(whatsappUrl, '_blank');
+    
     toast({
       title: translate(locale, "contact.toast.title"),
       description: translate(locale, "contact.toast.description"),
     });
-    // @ts-ignore
-    e.target.reset();
+    form.reset();
   };
 
   return (
@@ -72,33 +94,33 @@ export function Contact() {
           </div>
 
           <div className="animate-fade-in-up [animation-delay:200ms]">
-            <div className="bg-muted/30 p-8 md:p-14 rounded-[2.5rem] border border-border shadow-inner">
-              <h3 className="text-2xl md:text-3xl font-headline font-bold text-primary mb-8">{translate(locale, "contact.form.title")}</h3>
-              <form className="space-y-8" onSubmit={handleSubmit}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                  <div className="space-y-3">
-                    <Label htmlFor="name" className="font-bold">{translate(locale, "contact.form.nameLabel")}</Label>
-                    <Input id="name" placeholder={translate(locale, "contact.form.namePlaceholder")} required className="h-14 bg-white rounded-xl border-muted px-6" />
+            <div className="bg-muted/30 p-6 md:p-10 rounded-[2.5rem] border border-border shadow-inner">
+              <h3 className="text-2xl font-headline font-bold text-primary mb-6">{translate(locale, "contact.form.title")}</h3>
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="name" className="font-bold text-sm">{translate(locale, "contact.form.nameLabel")}</Label>
+                    <Input id="name" name="name" placeholder={translate(locale, "contact.form.namePlaceholder")} required className="h-12 bg-white rounded-xl border-muted px-4" />
                   </div>
-                  <div className="space-y-3">
-                    <Label htmlFor="phone" className="font-bold">{translate(locale, "contact.form.phoneLabel")}</Label>
-                    <Input id="phone" type="tel" placeholder={translate(locale, "contact.form.phonePlaceholder")} required className="h-14 bg-white rounded-xl border-muted px-6" />
+                  <div className="space-y-2">
+                    <Label htmlFor="phone" className="font-bold text-sm">{translate(locale, "contact.form.phoneLabel")}</Label>
+                    <Input id="phone" name="phone" type="tel" placeholder={translate(locale, "contact.form.phonePlaceholder")} required className="h-12 bg-white rounded-xl border-muted px-4" />
                   </div>
                 </div>
-                <div className="space-y-3">
-                  <Label htmlFor="location" className="font-bold">{translate(locale, "contact.form.locationLabel")}</Label>
-                  <Input id="location" placeholder={translate(locale, "contact.form.locationPlaceholder")} required className="h-14 bg-white rounded-xl border-muted px-6" />
+                <div className="space-y-2">
+                  <Label htmlFor="location" className="font-bold text-sm">{translate(locale, "contact.form.locationLabel")}</Label>
+                  <Input id="location" name="location" placeholder={translate(locale, "contact.form.locationPlaceholder")} required className="h-12 bg-white rounded-xl border-muted px-4" />
                 </div>
-                <div className="space-y-3">
-                  <Label htmlFor="interest" className="font-bold">{translate(locale, "contact.form.equipmentLabel")}</Label>
-                  <Input id="interest" placeholder={translate(locale, "contact.form.equipmentPlaceholder")} className="h-14 bg-white rounded-xl border-muted px-6" />
+                <div className="space-y-2">
+                  <Label htmlFor="interest" className="font-bold text-sm">{translate(locale, "contact.form.equipmentLabel")}</Label>
+                  <Input id="interest" name="interest" placeholder={translate(locale, "contact.form.equipmentPlaceholder")} className="h-12 bg-white rounded-xl border-muted px-4" />
                 </div>
-                <div className="space-y-3">
-                  <Label htmlFor="message" className="font-bold">{translate(locale, "contact.form.messageLabel")}</Label>
-                  <Textarea id="message" placeholder={translate(locale, "contact.form.messagePlaceholder")} rows={4} className="bg-white rounded-xl border-muted px-6 py-4" />
+                <div className="space-y-2">
+                  <Label htmlFor="message" className="font-bold text-sm">{translate(locale, "contact.form.messageLabel")}</Label>
+                  <Textarea id="message" name="message" placeholder={translate(locale, "contact.form.messagePlaceholder")} rows={4} className="bg-white rounded-xl border-muted px-4 py-3" />
                 </div>
-                <Button type="submit" className="w-full h-16 bg-primary hover:bg-primary/90 text-white font-black text-xl rounded-2xl shadow-xl shadow-primary/20 transition-all active:scale-95">
-                  <Send className="mr-3 h-6 w-6" />
+                <Button type="submit" className="w-full h-14 bg-primary hover:bg-primary/90 text-white font-black text-base rounded-2xl shadow-xl shadow-primary/20 transition-all active:scale-95">
+                  <Send className="mr-2 h-5 w-5" />
                   {translate(locale, "contact.form.submit")}
                 </Button>
               </form>

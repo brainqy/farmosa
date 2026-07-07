@@ -45,12 +45,16 @@ export function Navigation() {
           <div className="bg-white p-2 rounded-xl shadow-lg overflow-hidden transition-transform group-hover:rotate-12 group-hover:scale-110 border border-slate-200">
             <Image src="/images/logo.png" alt="SB AGROTECH logo" width={42} height={42} className="object-contain" />
           </div>
-          <span className={cn(
-            "font-headline font-bold text-xl md:text-2xl tracking-tight transition-all",
-            isScrolled || !isHomePage ? "text-primary" : "text-white"
-          )}>
-            SB AGROTECH
-          </span>
+          <div>
+            <span className={cn(
+              "font-headline font-bold text-xl md:text-2xl tracking-tight transition-all text-red-600"
+            )}>
+              SB AGROTECH
+            </span>
+            <p className="text-[9px] md:text-[10px] font-medium text-red-600 leading-tight tracking-tight uppercase">
+              Rotavator Manufacturing by Shree Balaji Agrotech
+            </p>
+          </div>
         </Link>
 
         {/* Desktop Nav */}
@@ -60,9 +64,8 @@ export function Navigation() {
               key={link.key}
               href={link.href}
               className={cn(
-                "text-sm font-bold transition-all hover:text-secondary relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-secondary after:transition-all hover:after:w-full",
-                isScrolled || !isHomePage ? "text-foreground" : "text-white",
-                pathname === link.href && "text-secondary after:w-full"
+                "text-sm font-bold transition-all hover:text-secondary relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-secondary after:transition-all hover:after:w-full text-red-600",
+                pathname === link.href && "text-red-700 after:w-full"
               )}
             >
               {translate(locale, link.key)}
@@ -112,7 +115,7 @@ export function Navigation() {
               onClick={() => setIsOpen(false)}
               style={{ transitionDelay: `${i * 50}ms` }}
               className={cn(
-                "text-foreground text-xl font-bold hover:text-primary transition-all py-3 border-b border-muted last:border-0 flex justify-between items-center group",
+                "text-red-600 text-xl font-bold hover:text-red-700 transition-all py-3 border-b border-muted last:border-0 flex justify-between items-center group",
                 isOpen ? "translate-x-0 opacity-100" : "-translate-x-4 opacity-0"
               )}
             >

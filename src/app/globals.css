@@ -59,6 +59,22 @@
   }
 }
 
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  14%, 28% {
+    transform: scale(1.2);
+  }
+  7%, 21%, 35% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.2s ease-in-out infinite;
+}
+
 .bg-gradient-agro {
   background: linear-gradient(135deg, hsl(var(--primary)) 0%, #b91c1c 100%);
 }

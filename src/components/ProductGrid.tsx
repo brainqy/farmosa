@@ -3,7 +3,9 @@
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Check, Phone, ChevronLeft, ChevronRight, Eye, Info } from "lucide-react";
+import { Check, Phone, Eye, Info } from "lucide-react";
+import { translate } from "@/lib/i18n";
+import { useLocale } from "@/hooks/use-locale";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -27,76 +29,149 @@ import {
 const PRODUCTS = [
   { 
     id: "rotavator-regular", 
-    name: "Regular Model Rotavator", 
-    description: "Our flagship entry-level rotavator designed for small to medium scale farmers. It provides excellent soil pulverization with minimum tractor power requirement. Built with high-grade steel for long-lasting durability in standard Punjab soil conditions.",
+    nameKey: "product.rotavatorRegular.name", 
+    descriptionKey: "product.rotavatorRegular.description",
     imageIds: ["rotavator-regular", "rotavator-regular-2"],
-    features: ["Single Speed Gearbox", "Heavy Duty Drive", "Boron Steel Blades", "Adjustable Side Skids", "Double Lip Oil Seals"] 
+    features: [
+      "product.rotavatorRegular.feature1",
+      "product.rotavatorRegular.feature2",
+      "product.rotavatorRegular.feature3",
+      "product.rotavatorRegular.feature4",
+      "product.rotavatorRegular.feature5",
+    ],
   },
   { 
     id: "rotavator-plus", 
-    name: "Regular Plus Rotavator", 
-    description: "An upgraded version of our standard model featuring a multi-speed gearbox. This allows the farmer to adjust the rotor speed based on soil hardness and tractor power, optimizing fuel efficiency and tillage quality.",
+    nameKey: "product.rotavatorPlus.name", 
+    descriptionKey: "product.rotavatorPlus.description",
     imageIds: ["rotavator-plus", "rotavator-plus-2"],
-    features: ["Multi-Speed Gears", "Adjustable Cover", "60+ Blade Config", "Tough Gearbox Housing", "Reinforced Frame"] 
+    features: [
+      "product.rotavatorPlus.feature1",
+      "product.rotavatorPlus.feature2",
+      "product.rotavatorPlus.feature3",
+      "product.rotavatorPlus.feature4",
+      "product.rotavatorPlus.feature5",
+    ],
   },
   { 
     id: "disk-harrow", 
-    name: "Rotary Disk Harrow", 
-    description: "Designed for deep tillage and effective weed control. Our disk harrows use self-sharpening boron steel disks that can penetrate even the toughest dry soil, making it ideal for primary soil preparation.",
+    nameKey: "product.diskHarrow.name", 
+    descriptionKey: "product.diskHarrow.description",
     imageIds: ["disk-harrow"],
-    features: ["Self-Sharpening Disks", "Deep Soil Tillage", "Tubular Main Frame", "Heavy Duty Bearings", "Easy Angle Adjustment"] 
+    features: [
+      "product.diskHarrow.feature1",
+      "product.diskHarrow.feature2",
+      "product.diskHarrow.feature3",
+      "product.diskHarrow.feature4",
+      "product.diskHarrow.feature5",
+    ],
   },
   { 
     id: "hd-rotavator", 
-    name: "HD Rotavator", 
-    description: "The 'Heavy Duty' specialist. Built for commercial farming and hard, stony soils. It features thicker side plates and a massive vibration-free shaft to handle the most demanding agricultural tasks.",
+    nameKey: "product.hdRotavator.name", 
+    descriptionKey: "product.hdRotavator.description",
     imageIds: ["hd-rotavator"],
-    features: ["Industrial Puddling", "Thick Side Plates", "Vibration Free Shaft", "Large Diameter Rotor", "Premium Drive Chain"] 
+    features: [
+      "product.hdRotavator.feature1",
+      "product.hdRotavator.feature2",
+      "product.hdRotavator.feature3",
+      "product.hdRotavator.feature4",
+      "product.hdRotavator.feature5",
+    ],
   },
   { 
     id: "double-frame", 
-    name: "Double Tubular Frame", 
-    description: "Engineered for maximum rigidity. The double tubular frame prevents any bending or warping even during deep tillage operations in heavy clay. This is the preferred choice for large-scale sugar cane and wheat farmers.",
+    nameKey: "product.doubleFrame.name", 
+    descriptionKey: "product.doubleFrame.description",
     imageIds: ["double-frame"],
-    features: ["Zero Bend Warranty", "Superior Depth", "Ideal for Sugar Mills", "Twin-Tube Construction", "Enhanced Stability"] 
+    features: [
+      "product.doubleFrame.feature1",
+      "product.doubleFrame.feature2",
+      "product.doubleFrame.feature3",
+      "product.doubleFrame.feature4",
+      "product.doubleFrame.feature5",
+    ],
   },
   { 
     id: "zero-drill", 
-    name: "Zero Drill Machine", 
-    description: "Precision seeding at its best. This machine allows for direct sowing without the need for prior tillage, conserving soil moisture and significantly reducing fuel and labor costs.",
+    nameKey: "product.zeroDrill.name", 
+    descriptionKey: "product.zeroDrill.description",
     imageIds: ["zero-drill"],
-    features: ["Moisture Lock Tech", "Precise Spacing", "Multi-Row Models", "Depth Control Wheels", "Anti-Clog Seed Tubes"] 
+    features: [
+      "product.zeroDrill.feature1",
+      "product.zeroDrill.feature2",
+      "product.zeroDrill.feature3",
+      "product.zeroDrill.feature4",
+      "product.zeroDrill.feature5",
+    ],
   },
   { 
     id: "laser-leveler", 
-    name: "Laser Land Leveler", 
-    description: "Achieve perfect field uniformity. Our laser levelers improve irrigation efficiency by up to 40%, ensuring every corner of your field receives the right amount of water for uniform crop growth.",
+    nameKey: "product.laserLeveler.name", 
+    descriptionKey: "product.laserLeveler.description",
     imageIds: ["laser-leveler"],
-    features: ["Dual Slope Support", "High Precision Sensor", "Fuel Saving Mode", "User Friendly Control Box", "Rugged Scraper Blade"] 
+    features: [
+      "product.laserLeveler.feature1",
+      "product.laserLeveler.feature2",
+      "product.laserLeveler.feature3",
+      "product.laserLeveler.feature4",
+      "product.laserLeveler.feature5",
+    ],
   },
   { 
     id: "mud-loader", 
-    name: "Mud Loader Machine", 
-    description: "A versatile tractor-mounted solution for heavy lifting and loading. Perfect for pond desilting, field leveling, and transporting loose materials across the farm with ease.",
+    nameKey: "product.mudLoader.name", 
+    descriptionKey: "product.mudLoader.description",
     imageIds: ["mud-loader"],
-    features: ["High Lift Hydraulics", "Anti-Clog Bucket", "Tractor Mounted", "Quick Attachment System", "Heavy Duty Boom"] 
+    features: [
+      "product.mudLoader.feature1",
+      "product.mudLoader.feature2",
+      "product.mudLoader.feature3",
+      "product.mudLoader.feature4",
+      "product.mudLoader.feature5",
+    ],
+  },
+  { 
+    id: "farmi-dubble-pali-maker", 
+    nameKey: "product.farmiDubblePaliMaker.name", 
+    descriptionKey: "product.farmiDubblePaliMaker.description",
+    imageIds: ["regular"],
+    features: [
+      "product.farmiDubblePaliMaker.feature1",
+      "product.farmiDubblePaliMaker.feature2",
+      "product.farmiDubblePaliMaker.feature3",
+      "product.farmiDubblePaliMaker.feature4",
+    ],
   },
 ];
 
 const ITEMS_PER_PAGE = 8;
 
 export function ProductGrid() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(PRODUCTS.length / ITEMS_PER_PAGE);
+  const { locale } = useLocale();
+  const [itemsToShow, setItemsToShow] = useState(ITEMS_PER_PAGE);
+  const [expandedProducts, setExpandedProducts] = useState<Set<string>>(new Set());
 
   const paginatedProducts = useMemo(() => {
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    return PRODUCTS.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-  }, [currentPage]);
+    return PRODUCTS.slice(0, itemsToShow);
+  }, [itemsToShow]);
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const hasMore = itemsToShow < PRODUCTS.length;
+
+  const handleLoadMore = () => {
+    setItemsToShow(prev => Math.min(prev + ITEMS_PER_PAGE, PRODUCTS.length));
+  };
+
+  const toggleExpandProduct = (productId: string) => {
+    setExpandedProducts(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(productId)) {
+        newSet.delete(productId);
+      } else {
+        newSet.add(productId);
+      }
+      return newSet;
+    });
   };
 
   const getWhatsAppLink = (productName: string) => {
@@ -109,17 +184,20 @@ export function ProductGrid() {
     <section id="products" className="py-20 md:py-32 bg-muted/40 min-h-screen">
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24 animate-fade-in-up">
-          <span className="text-secondary font-bold tracking-widest uppercase text-xs md:text-sm mb-4 block">Product Catalog</span>
+          <span className="text-secondary font-bold tracking-widest uppercase text-xs md:text-sm mb-4 block">{translate(locale, 'products.catalogBadge')}</span>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-headline font-bold text-primary mb-6 leading-tight">
-            Engineering for <br className="hidden sm:block" /> Field Performance
+            {translate(locale, 'products.title')}
           </h2>
           <p className="text-muted-foreground text-base md:text-lg">
-            Every ROBUTA machine is built to minimize downtime during critical sowing seasons. 
+            {translate(locale, 'products.description')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
           {paginatedProducts.map((prod, i) => {
+            const productName = translate(locale, prod.nameKey);
+            const productDescription = translate(locale, prod.descriptionKey);
+
             return (
               <Card 
                 key={prod.id} 
@@ -139,7 +217,7 @@ export function ProductGrid() {
                             {img?.imageUrl ? (
                               <Image
                                 src={img.imageUrl}
-                                alt={prod.name}
+                                alt={productName || "Agricultural equipment product image"}
                                 fill
                                 className="object-contain p-3 sm:p-5 transition-transform duration-700 hover:scale-105"
                                 data-ai-hint={img.imageHint}
@@ -167,22 +245,31 @@ export function ProductGrid() {
                     </span>
                   </div>
                 </div>
-                <CardHeader className="pb-4 pt-6">
-                  <CardTitle className="text-xl font-headline text-primary group-hover:text-secondary transition-colors leading-tight min-h-[3rem] flex items-center">
-                    {prod.name}
+                <CardHeader className="pb-2 pt-4">
+                  <CardTitle className="text-lg font-headline text-primary group-hover:text-secondary transition-colors leading-tight min-h-[2.5rem] flex items-center">
+                    {productName}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex-grow pt-0 pb-6 px-6">
-                  <ul className="space-y-2 mb-4">
-                    {prod.features.slice(0, 3).map((f, idx) => (
+                <CardContent className="flex-grow pt-0 pb-4 px-4 sm:px-5">
+                  <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{productDescription}</p>
+                  <ul className="space-y-1.5 mb-3">
+                    {prod.features.slice(0, expandedProducts.has(prod.id) ? prod.features.length : 3).map((f, idx) => (
                       <li key={idx} className="flex items-start gap-3 text-sm text-muted-foreground">
                         <Check size={14} className="text-secondary mt-1 shrink-0" />
-                        <span className="leading-tight">{f}</span>
+                        <span className="leading-tight">{translate(locale, f)}</span>
                       </li>
                     ))}
                   </ul>
+                  {prod.features.length > 3 && (
+                    <button
+                      onClick={() => toggleExpandProduct(prod.id)}
+                      className="text-xs font-bold text-secondary hover:text-primary transition-colors mt-2"
+                    >
+                      {expandedProducts.has(prod.id) ? translate(locale, 'products.showLess') : translate(locale, 'products.showMore')}
+                    </button>
+                  )}
                 </CardContent>
-                <CardFooter className="pt-0 pb-8 px-6 grid grid-cols-1 gap-3">
+                <CardFooter className="pt-0 pb-4 px-4 sm:px-5 grid grid-cols-1 gap-2">
                   <Dialog>
                     <DialogTrigger asChild>
                    {/*    <Button variant="outline" className="w-full border-primary/20 text-primary hover:bg-primary/5 font-bold h-12 flex items-center justify-center gap-2 rounded-xl transition-all">
@@ -202,7 +289,7 @@ export function ProductGrid() {
                                     {img?.imageUrl ? (
                                       <Image
                                         src={img.imageUrl}
-                                        alt={prod.name}
+                                        alt={productName || "Agricultural equipment product image"}
                                         fill
                                         className="object-contain p-4 md:p-6"
                                         data-ai-hint={img.imageHint}
@@ -228,9 +315,9 @@ export function ProductGrid() {
                           <div className="space-y-6">
                             <div>
                               <span className="text-secondary font-bold text-xs uppercase tracking-widest mb-2 block">Product Specifications</span>
-                              <DialogTitle className="text-2xl md:text-4xl font-headline font-bold text-primary mb-4 leading-tight">{prod.name}</DialogTitle>
+                              <DialogTitle className="text-2xl md:text-4xl font-headline font-bold text-primary mb-4 leading-tight">{productName}</DialogTitle>
                               <DialogDescription className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                                {prod.description}
+                                {productDescription}
                               </DialogDescription>
                             </div>
                             
@@ -251,8 +338,8 @@ export function ProductGrid() {
                           </div>
 
                           <div className="mt-8 pt-6 border-t">
-                            <Button className="w-full bg-primary hover:bg-secondary text-white font-bold h-14 rounded-2xl transition-all shadow-xl shadow-primary/20" asChild>
-                              <Link href={getWhatsAppLink(prod.name)} target="_blank">
+                            <Button className="w-full bg-primary hover:bg-secondary text-white font-bold h-12 rounded-2xl transition-all shadow-xl shadow-primary/20" asChild>
+                              <Link href={getWhatsAppLink(productName)} target="_blank">
                                 <Phone size={20} className="mr-2" />
                                 Enquire for Price
                               </Link>
@@ -263,8 +350,8 @@ export function ProductGrid() {
                     </DialogContent>
                   </Dialog>
 
-                  <Button className="w-full bg-primary hover:bg-secondary text-white font-bold h-12 flex items-center justify-center gap-2 rounded-xl transition-all shadow-lg shadow-primary/10" asChild>
-                    <Link href={getWhatsAppLink(prod.name)} target="_blank">
+                  <Button className="w-full bg-primary hover:bg-secondary text-white font-bold h-10 flex items-center justify-center gap-2 rounded-xl transition-all shadow-lg shadow-primary/10" asChild>
+                    <Link href={getWhatsAppLink(productName)} target="_blank">
                       <Phone size={18} />
                       Request Quote
                     </Link>
@@ -275,43 +362,14 @@ export function ProductGrid() {
           })}
         </div>
 
-        {/* Pagination Controls */}
-        {totalPages > 1 && (
-          <div className="mt-20 flex justify-center items-center gap-2 animate-fade-in-up">
-            <Button
-              variant="outline"
-              size="icon"
-              disabled={currentPage === 1}
-              onClick={() => handlePageChange(currentPage - 1)}
-              className="rounded-xl border-primary/20 hover:border-primary text-primary"
+        {/* Load More Button */}
+        {hasMore && (
+          <div className="mt-20 flex justify-center animate-fade-in-up">
+            <Button 
+              onClick={handleLoadMore}
+              className="bg-primary hover:bg-secondary text-white font-bold px-8 md:px-12 py-6 h-auto text-base md:text-lg rounded-2xl transition-all shadow-lg shadow-primary/20 hover:scale-105"
             >
-              <ChevronLeft size={20} />
-            </Button>
-            
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <Button
-                key={page}
-                variant={currentPage === page ? "default" : "outline"}
-                onClick={() => handlePageChange(page)}
-                className={cn(
-                  "w-12 h-12 rounded-xl font-bold transition-all",
-                  currentPage === page 
-                    ? "bg-primary text-white shadow-lg shadow-primary/20 scale-110" 
-                    : "border-primary/20 hover:border-primary text-primary"
-                )}
-              >
-                {page}
-              </Button>
-            ))}
-
-            <Button
-              variant="outline"
-              size="icon"
-              disabled={currentPage === totalPages}
-              onClick={() => handlePageChange(currentPage + 1)}
-              className="rounded-xl border-primary/20 hover:border-primary text-primary"
-            >
-              <ChevronRight size={20} />
+              Load More Products
             </Button>
           </div>
         )}

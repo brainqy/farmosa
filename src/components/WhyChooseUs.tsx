@@ -106,8 +106,8 @@ export function WhyChooseUs() {
           {VALUES.slice(4, 6).map((val, i) => (
             <div key={i} className="flex flex-col sm:flex-row gap-8 p-10 bg-primary rounded-[2.5rem] text-white group hover:scale-[1.02] transition-transform duration-500 relative overflow-hidden">
                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
-               <div className="shrink-0 w-20 h-20 bg-white/10 backdrop-blur-md rounded-3xl flex items-center justify-center text-secondary">
-                 <val.icon size={40} />
+               <div className="shrink-0 w-20 h-20 bg-white/10 backdrop-blur-md rounded-3xl flex items-center justify-center text-white group-hover:bg-white/20 transition-all duration-300">
+                 <val.icon size={40} className="text-white" />
                </div>
                <div className="space-y-3">
                  <h4 className="text-2xl font-headline font-bold">{translate(locale, val.titleKey)}</h4>

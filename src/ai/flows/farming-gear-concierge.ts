@@ -69,7 +69,7 @@ const prompt = ai.definePrompt({
   name: 'farmingGearConciergePrompt',
   input: { schema: FarmingGearConciergeInputSchema },
   output: { schema: FarmingGearConciergeOutputSchema },
-  prompt: `You are an expert agricultural machinery consultant for AgroMachines Equipments in Punjab, India. Your task is to recommend the most suitable farming equipment from AgroMachines' catalog to a farmer based on their soil type, crop variety, and acreage.
+  prompt: `You are an expert agricultural machinery consultant for SB AGROTECH in Rajasthan, India. Your task is to recommend the most suitable farming equipment from SB AGROTECH's catalog to a farmer based on their soil type, crop variety, and acreage.
 
 Here is the AgroMachines product catalog and their key features:
 - **Regular Model Rotavator**: Standard duty, versatile for general soil preparation, suitable for small to medium farms, robust construction.

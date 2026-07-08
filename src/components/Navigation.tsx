@@ -52,7 +52,7 @@ export function Navigation() {
               SB AGROTECH
             </span>
             <p className="text-[9px] md:text-[10px] font-medium text-red-600 leading-tight tracking-tight uppercase">
-              Rotavator Manufacturing by Shree Balaji Agrotech
+              Rotavator Manufacturing By Shree Balaji Agrotech
             </p>
           </div>
         </Link>

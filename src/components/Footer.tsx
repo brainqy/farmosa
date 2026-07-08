@@ -5,10 +5,13 @@ import Link from "next/link";
 import { Tractor, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import { useLocale } from "@/hooks/use-locale";
 import { translate } from "@/lib/i18n";
+import packageJson from "../../package.json";
 
 export function Footer() {
   const { locale } = useLocale();
   const currentYear = new Date().getFullYear();
+  const releaseVersion = String(packageJson.releaseVersion ?? packageJson.version ?? "0.0.0");
+  const releaseInfo = translate(locale, "footer.releaseInfo").replace("{version}", releaseVersion);
 
   return (
     <footer className="bg-primary text-primary-foreground pt-24 pb-12">
@@ -74,15 +77,16 @@ export function Footer() {
         </div>
 
         <div className="pt-12 border-t border-primary-foreground/10 flex flex-col lg:flex-row justify-between items-center gap-6 text-primary-foreground/40 text-sm font-medium">
-          <p className="text-center lg:text-left w-full lg:w-1/3">{translate(locale, "footer.copyright").replace('{year}', String(currentYear))}</p>
-          <div className="w-full lg:w-1/3 text-center">
-            <a href="https://www.jobtraq.in/contact-us" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+          <p className="text-center lg:text-left w-full lg:w-1/4">{translate(locale, "footer.copyright").replace('{year}', String(currentYear))}</p>
+                    <div className="w-full lg:w-1/4 text-center">
+            <a href="https://www.jobtraq.in/" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 text-primary-foreground/80 hover:text-primary-foreground transition-colors">
               Proudly created By JobTraq
               <span className="text-red-500 animate-heartbeat text-lg">❤️</span>
             </a>
           </div>
-          <p className="text-center lg:text-right w-full lg:w-1/3">{translate(locale, "footer.location")}</p>
-        </div>
+          <p className="text-center w-full lg:w-1/4 text-primary-foreground/60">{releaseInfo}</p>
+
+          </div>
       </div>
     </footer>
   );

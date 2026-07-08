@@ -135,12 +135,36 @@ const PRODUCTS = [
     id: "farmi-dubble-pali-maker", 
     nameKey: "product.farmiDubblePaliMaker.name", 
     descriptionKey: "product.farmiDubblePaliMaker.description",
-    imageIds: ["regular"],
+    imageIds: ["farmi-dubble-pali-maker"],
     features: [
       "product.farmiDubblePaliMaker.feature1",
       "product.farmiDubblePaliMaker.feature2",
       "product.farmiDubblePaliMaker.feature3",
       "product.farmiDubblePaliMaker.feature4",
+    ],
+  },
+  { 
+    id: "uj-cross-1210", 
+    nameKey: "product.ujCross1210.name", 
+    descriptionKey: "product.ujCross1210.description",
+    imageIds: ["uj-cross-1210"],
+    features: [
+      "product.ujCross1210.feature1",
+      "product.ujCross1210.feature2",
+      "product.ujCross1210.feature3",
+      "product.ujCross1210.feature4",
+    ],
+  },
+  { 
+    id: "rotavator-blade", 
+    nameKey: "product.rotavatorBlade.name", 
+    descriptionKey: "product.rotavatorBlade.description",
+    imageIds: ["rotavator-blade"],
+    features: [
+      "product.rotavatorBlade.feature1",
+      "product.rotavatorBlade.feature2",
+      "product.rotavatorBlade.feature3",
+      "product.rotavatorBlade.feature4",
     ],
   },
 ];
@@ -152,14 +176,23 @@ export function ProductGrid() {
   const [itemsToShow, setItemsToShow] = useState(ITEMS_PER_PAGE);
   const [expandedProducts, setExpandedProducts] = useState<Set<string>>(new Set());
 
-  const paginatedProducts = useMemo(() => {
-    return PRODUCTS.slice(0, itemsToShow);
-  }, [itemsToShow]);
+  const visibleProducts = useMemo(() => {
+    return PRODUCTS.filter((product) =>
+      product.imageIds.some((imageId) => {
+        const image = PlaceHolderImages.find((item) => item.id === imageId);
+        return Boolean(image?.imageUrl);
+      })
+    );
+  }, []);
 
-  const hasMore = itemsToShow < PRODUCTS.length;
+  const paginatedProducts = useMemo(() => {
+    return visibleProducts.slice(0, itemsToShow);
+  }, [itemsToShow, visibleProducts]);
+
+  const hasMore = itemsToShow < visibleProducts.length;
 
   const handleLoadMore = () => {
-    setItemsToShow(prev => Math.min(prev + ITEMS_PER_PAGE, PRODUCTS.length));
+    setItemsToShow(prev => Math.min(prev + ITEMS_PER_PAGE, visibleProducts.length));
   };
 
   const toggleExpandProduct = (productId: string) => {
